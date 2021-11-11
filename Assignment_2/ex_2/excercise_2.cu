@@ -58,6 +58,11 @@ int main(int argc, char *argv[])
 	float *out_cpu = (float *)malloc(arraySize*sizeof(float));
 	float a=3;
 	float den=0;
+	for(int i=0; i< arraySize;i++)
+	{
+		x[i]=1;
+		y[i]=3;
+	}
 	printf("Array size: %d\n", arraySize);
 	printf("Computing SAXPY on the CPU…");
 	double iStart = cpuSecond();
@@ -70,7 +75,7 @@ int main(int argc, char *argv[])
 	double iElaps_GPU = cpuSecond() - iStart;
 	printf("Done! \n");
 	printf("Time elapsed CPU: %f \n Time elapsed GPU: %f \n",iElaps_CPU,iElaps_GPU);
-	
+	printf("First elements out array: %f, %f, %f",out_cpu[0],out_cpu[1],out_cpu[2]);
 	for(int i = 0; i < arraySize; i++)
 	{
 		if (abs(out_cpu[i])< 1e-6)
@@ -78,10 +83,11 @@ int main(int argc, char *argv[])
 		else 
 		{	den = out_cpu[i]; }
 		
-		if((out_gpu[i]-out_cpu[i])/den> 1e-3) {
+		if(abs(out_gpu[i]-out_cpu[i])/den> 1e-3) {
 			printf("Difference encountered! \n");
 			break;
 		}
 	}
+
 	return 0;
 }
