@@ -1,0 +1,6 @@
+Block size for 100000 million its. (1 million threads),Time
+16,24.074174
+32,12.053467
+64,11.954466
+128,12.028516
+256,12.108543
