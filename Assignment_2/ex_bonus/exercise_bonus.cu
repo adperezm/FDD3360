@@ -8,7 +8,7 @@
 #include <curand.h>
 #include <sys/time.h>
 
-//#define SINGLE_PRECISION
+#define SINGLE_PRECISION
 
 
 double cpuSecond() {
