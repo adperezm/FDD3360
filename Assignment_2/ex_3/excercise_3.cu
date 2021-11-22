@@ -1,13 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
-/* Definitions */
-//typedef  struct{
-//    float x,y,z;
-//}float3; // Comment when it is compiled in cuda 
-float3 f = make_float3(1.0f, 2.0f, 3.0f);
-//float3 f = (float3)(1.0f, 2.0f, 3.0f);
-//typedef float3 Particle;
+
 typedef float3 Particle;
 
 // Question 1 defines:
@@ -19,9 +13,9 @@ typedef float3 Particle;
 #define QUESTION_1_VEL 1.0
 
 // Question 2 defines:
-#define QUESTION_2_NUM_ITERATIONS 1000.0
-#define QUESTION_2_NUM_PARTICLES_MIN 10.0
-#define QUESTION_2_NUM_PARTICLES_MAX 10000.0
+#define QUESTION_2_NUM_ITERATIONS 10000.0
+#define QUESTION_2_NUM_PARTICLES_MIN 10000.0
+#define QUESTION_2_NUM_PARTICLES_MAX 1000000.0
 #define QUESTION_2_NUM_RUNS 10
 #define QUESTION_2_BLOCKS {16,32,64,128,256}
 #define QUESTION_2_NUM_BLOCKS_RUN 5
@@ -33,9 +27,8 @@ void question2_loop(void);
 void save_float_array(char * filename,char * x_label,char * y_label, float * x_farray,float * y_farray, unsigned int n_elements);
 float CPU_compute_particle_simulation(unsigned int num_particles, unsigned int num_iterations);
 float GPU_compute_particle_simulation(unsigned int num_particles, unsigned int num_iterations, unsigned int block_size);//TBD
-//__global__ void GPU_part(float *d_all_particles_ptr, float v, float QUESTION_2_DT,unsigned int local_num_particles);
-
 double cpuSecond(void);
+__global__ void GPU_update(Particle *allparticles, float v,unsigned int num_iterations,unsigned int num_particles);
 /*Main*/
 int main(int argc, char *argv[])
 {
@@ -55,7 +48,7 @@ void question1_loop()
         num_particles[i]=(unsigned int) (QUESTION_1_NUM_PARTICLES_MIN + (float)i*((QUESTION_1_NUM_PARTICLES_MAX-QUESTION_1_NUM_PARTICLES_MIN)/(float)QUESTION_1_NUM_RUNS));
         CPU_proc_times[i]=CPU_compute_particle_simulation(num_particles[i], QUESTION_1_NUM_ITERATIONS);
     }
-    save_float_array((char *)"Question1.txt",(char *) "Num Particles",(char *) "CPU Processing time",num_particles,CPU_proc_times, QUESTION_1_NUM_RUNS);
+    save_float_array("Question1.txt", "Num Particles", "CPU Processing time",num_particles,CPU_proc_times, QUESTION_1_NUM_RUNS);
 }
 
 void question2_loop()
@@ -64,6 +57,7 @@ void question2_loop()
     unsigned int block_size[QUESTION_2_NUM_BLOCKS_RUN]=QUESTION_2_BLOCKS;
     for(unsigned int curr_block_index=0;curr_block_index<QUESTION_2_NUM_BLOCKS_RUN;curr_block_index++)
     {    
+	printf("Block size: %d \n",block_size[curr_block_index]);
         for(unsigned int curr_n_particles=0;curr_n_particles<QUESTION_2_NUM_RUNS; curr_n_particles++) //Generates num particles array
         {
             num_particles[curr_block_index][curr_n_particles]=(unsigned int) (QUESTION_2_NUM_PARTICLES_MIN + (float)curr_n_particles*((QUESTION_2_NUM_PARTICLES_MAX-QUESTION_2_NUM_PARTICLES_MIN)/(float)QUESTION_2_NUM_RUNS));
@@ -102,58 +96,39 @@ float CPU_compute_particle_simulation(unsigned int num_particles, unsigned int n
     printf("Num particles: %d, Time elapsed CPU: %f \n",num_particles,time_elapsed);
     return time_elapsed; // change
 }
-
 /* GPU computation */ 
-
-__global__ void GPU_part(float *d_all_particles_ptr, float v, float QUESTION_2_DT,unsigned int local_num_particles)
-{
-	const int i = blockIdx.x*blockDim.x + threadIdx.x;
-    if(i<local_num_particles)
-	{
-		    d_all_particles_ptr[i].x+=v*QUESTION_2_DT;
-            d_all_particles_ptr[i].y+=v*QUESTION_2_DT;
-            d_all_particles_ptr[i].z+=v*QUESTION_2_DT;
-	}
-}
-
 float GPU_compute_particle_simulation(unsigned int num_particles, unsigned int num_iterations, unsigned int block_size)//TBD
 {
-    //unsigned int n_part;
-	//unsigned int n_iter;
-	//unsigned int block;
 
-	unsigned int local_num_particles = num_particles/block_size;
     float v=QUESTION_2_VEL; //Could be a random value.
-	float *d_all_particles_ptr;
+
     Particle *all_particles_ptr = (Particle *) calloc(num_particles, sizeof(Particle)); 
+    Particle *d_all_particles_ptr;
 
     cudaMalloc(&d_all_particles_ptr, num_particles*sizeof(Particle));
 
-	cudaMemcpy(d_all_particles_ptr, all_particle_ptr, num_particles*sizeof(Particle), cudaMemcpyHostToDevice);
-    
-	double start_time=cpuSecond();
-
-    for(unsigned int it_n=0; it_n<num_iterations; it_n++)
-    {
-//        for(unsigned int curr_particle=0; curr_particle<num_particles; curr_particle++)
-//        {
-//            all_particles_ptr[curr_particle].x+=v*QUESTION_1_DT;
-//            all_particles_ptr[curr_particle].y+=v*QUESTION_1_DT;
-//            all_particles_ptr[curr_particle].z+=v*QUESTION_1_DT;
-//        }
-
-	GPU_part<<<num_particles/block_size+1,block_size>>>(d_all_particles_ptr,v,QUESTION_2_DT,local_num_particles);
-    }
+    double iStart = cpuSecond();
+    GPU_update<<<num_particles/block_size+1,block_size>>>(d_all_particles_ptr,v,num_iterations,num_particles);
     cudaDeviceSynchronize();
-    double time_elapsed=cpuSecond() - start_time;
-    printf("Num particles: %d, Time elapsed GPU: %f \n",num_particles,time_elapsed);
-	cudaMemcpy(all_particles_ptr,d_all_particles_ptr,num_particles*sizeof(Particle),cudaMemcpyDeviceToHost);
-	cudaFree(d_all_particles_ptr);
+    double time_elapsed=cpuSecond() - iStart;
+    printf("Num particles: %d, Time elapsed GPU: %f \n",num_particles,time_elapsed); 
+    cudaMemcpy(all_particles_ptr,d_all_particles_ptr,num_particles*sizeof(Particle),cudaMemcpyDeviceToHost);
+    cudaFree(d_all_particles_ptr);
     return time_elapsed; // change
-   
 }
 
-
+__global__ void GPU_update(Particle *all_particles_ptr, float v,unsigned int num_iterations,unsigned int num_particles)
+{
+        const int i = blockIdx.x*blockDim.x + threadIdx.x;
+        unsigned int curr_particle=i; //Check boundaries
+        if(i<num_particles)
+        {
+            
+            all_particles_ptr[curr_particle].x+=v*QUESTION_1_DT;
+            all_particles_ptr[curr_particle].y+=v*QUESTION_1_DT;
+            all_particles_ptr[curr_particle].z+=v*QUESTION_1_DT;
+        }
+}
 
 /*Auxiliar functions */
 
