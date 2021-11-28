@@ -1,0 +1,216 @@
+Running!
+==20571== NVPROF is profiling process 20571, command: ./excercise_2b.out 1000
+==20571== Profiling application: ./excercise_2b.out 1000
+==20571== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  548.44us         1  548.44us  548.44us  548.44us  GPU_update(float3*, float, unsigned int)
+      API calls:   99.21%  189.45ms         1  189.45ms  189.45ms  189.45ms  cudaMallocManaged
+                    0.33%  626.85us         1  626.85us  626.85us  626.85us  cuDeviceTotalMem
+                    0.28%  525.84us         1  525.84us  525.84us  525.84us  cudaDeviceSynchronize
+                    0.08%  144.62us       101  1.4310us     160ns  59.460us  cuDeviceGetAttribute
+                    0.05%  92.274us         1  92.274us  92.274us  92.274us  cudaFree
+                    0.05%  87.287us         1  87.287us  87.287us  87.287us  cudaLaunchKernel
+                    0.02%  32.462us         1  32.462us  32.462us  32.462us  cuDeviceGetName
+                    0.00%  2.6630us         1  2.6630us  2.6630us  2.6630us  cuDeviceGetPCIBusId
+                    0.00%  1.4900us         3     496ns     204ns  1.0700us  cuDeviceGetCount
+                    0.00%     917ns         2     458ns     195ns     722ns  cuDeviceGet
+                    0.00%     312ns         1     312ns     312ns     312ns  cuDeviceGetUuid
+
+==20571== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+       2  32.000KB  12.000KB  52.000KB  64.00000KB  7.456000us  Host To Device
+       1         -         -         -           -  542.7520us  Gpu page fault groups
+Total CPU Page faults: 1
+Running!
+==20591== NVPROF is profiling process 20591, command: ./excercise_2b.out 10000
+==20591== Profiling application: ./excercise_2b.out 10000
+==20591== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  864.28us         1  864.28us  864.28us  864.28us  GPU_update(float3*, float, unsigned int)
+      API calls:   99.08%  185.63ms         1  185.63ms  185.63ms  185.63ms  cudaMallocManaged
+                    0.46%  866.96us         1  866.96us  866.96us  866.96us  cudaDeviceSynchronize
+                    0.29%  552.08us         1  552.08us  552.08us  552.08us  cuDeviceTotalMem
+                    0.07%  136.78us       101  1.3540us     134ns  59.133us  cuDeviceGetAttribute
+                    0.05%  88.039us         1  88.039us  88.039us  88.039us  cudaFree
+                    0.02%  42.479us         1  42.479us  42.479us  42.479us  cudaLaunchKernel
+                    0.02%  38.259us         1  38.259us  38.259us  38.259us  cuDeviceGetName
+                    0.00%  2.7030us         1  2.7030us  2.7030us  2.7030us  cuDeviceGetPCIBusId
+                    0.00%  1.8530us         3     617ns     204ns  1.3980us  cuDeviceGetCount
+                    0.00%     917ns         2     458ns     141ns     776ns  cuDeviceGet
+                    0.00%     402ns         1     402ns     402ns     402ns  cuDeviceGetUuid
+
+==20591== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+       6  21.333KB  8.0000KB  48.000KB  128.0000KB  16.57600us  Host To Device
+       1         -         -         -           -  854.8160us  Gpu page fault groups
+Total CPU Page faults: 2
+Running!
+==20612== NVPROF is profiling process 20612, command: ./excercise_2b.out 100000
+==20612== Profiling application: ./excercise_2b.out 100000
+==20612== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  1.4906ms         1  1.4906ms  1.4906ms  1.4906ms  GPU_update(float3*, float, unsigned int)
+      API calls:   98.61%  188.96ms         1  188.96ms  188.96ms  188.96ms  cudaMallocManaged
+                    0.78%  1.4935ms         1  1.4935ms  1.4935ms  1.4935ms  cudaDeviceSynchronize
+                    0.40%  774.84us         1  774.84us  774.84us  774.84us  cuDeviceTotalMem
+                    0.09%  178.74us       101  1.7690us     192ns  76.303us  cuDeviceGetAttribute
+                    0.07%  141.39us         1  141.39us  141.39us  141.39us  cudaFree
+                    0.02%  36.894us         1  36.894us  36.894us  36.894us  cudaLaunchKernel
+                    0.01%  28.336us         1  28.336us  28.336us  28.336us  cuDeviceGetName
+                    0.00%  2.8680us         1  2.8680us  2.8680us  2.8680us  cuDeviceGetPCIBusId
+                    0.00%  1.6490us         3     549ns     260ns  1.0820us  cuDeviceGetCount
+                    0.00%  1.0480us         2     524ns     227ns     821ns  cuDeviceGet
+                    0.00%     361ns         1     361ns     361ns     361ns  cuDeviceGetUuid
+
+==20612== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+      49  41.796KB  4.0000KB  920.00KB  2.000000MB  214.3040us  Host To Device
+       4         -         -         -           -  1.463200ms  Gpu page fault groups
+Total CPU Page faults: 6
+Running!
+==20638== NVPROF is profiling process 20638, command: ./excercise_2b.out 1000000
+==20638== Profiling application: ./excercise_2b.out 1000000
+==20638== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  5.6442ms         1  5.6442ms  5.6442ms  5.6442ms  GPU_update(float3*, float, unsigned int)
+      API calls:   96.36%  185.66ms         1  185.66ms  185.66ms  185.66ms  cudaMallocManaged
+                    2.93%  5.6461ms         1  5.6461ms  5.6461ms  5.6461ms  cudaDeviceSynchronize
+                    0.30%  576.97us         1  576.97us  576.97us  576.97us  cudaFree
+                    0.29%  558.03us         1  558.03us  558.03us  558.03us  cuDeviceTotalMem
+                    0.08%  146.53us       101  1.4500us     135ns  59.274us  cuDeviceGetAttribute
+                    0.03%  49.108us         1  49.108us  49.108us  49.108us  cudaLaunchKernel
+                    0.01%  26.111us         1  26.111us  26.111us  26.111us  cuDeviceGetName
+                    0.00%  2.2650us         1  2.2650us  2.2650us  2.2650us  cuDeviceGetPCIBusId
+                    0.00%  1.8460us         3     615ns     204ns     915ns  cuDeviceGetCount
+                    0.00%     927ns         2     463ns     263ns     664ns  cuDeviceGet
+                    0.00%     263ns         1     263ns     263ns     263ns  cuDeviceGetUuid
+
+==20638== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+     325  36.062KB  4.0000KB  992.00KB  11.44531MB  1.254208ms  Host To Device
+      23         -         -         -           -  5.520704ms  Gpu page fault groups
+Total CPU Page faults: 36
+Running!
+==20667== NVPROF is profiling process 20667, command: ./excercise_2b.out 10000000
+==20667== Profiling application: ./excercise_2b.out 10000000
+==20667== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  31.331ms         1  31.331ms  31.331ms  31.331ms  GPU_update(float3*, float, unsigned int)
+      API calls:   82.53%  177.81ms         1  177.81ms  177.81ms  177.81ms  cudaMallocManaged
+                   14.54%  31.335ms         1  31.335ms  31.335ms  31.335ms  cudaDeviceSynchronize
+                    2.49%  5.3581ms         1  5.3581ms  5.3581ms  5.3581ms  cudaFree
+                    0.33%  719.61us         1  719.61us  719.61us  719.61us  cuDeviceTotalMem
+                    0.07%  157.58us       101  1.5600us     181ns  64.248us  cuDeviceGetAttribute
+                    0.02%  45.385us         1  45.385us  45.385us  45.385us  cudaLaunchKernel
+                    0.01%  29.868us         1  29.868us  29.868us  29.868us  cuDeviceGetName
+                    0.00%  2.3450us         1  2.3450us  2.3450us  2.3450us  cuDeviceGetPCIBusId
+                    0.00%  1.4870us         3     495ns     234ns  1.0030us  cuDeviceGetCount
+                    0.00%     852ns         2     426ns     199ns     653ns  cuDeviceGet
+                    0.00%     412ns         1     412ns     412ns     412ns  cuDeviceGetUuid
+
+==20667== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+    3032  38.650KB  4.0000KB  0.9961MB  114.4414MB  12.52794ms  Host To Device
+     242         -         -         -           -  33.45030ms  Gpu page fault groups
+Total CPU Page faults: 346
+Running!
+==20690== NVPROF is profiling process 20690, command: ./excercise_2b.out 31600000
+==20690== Profiling application: ./excercise_2b.out 31600000
+==20690== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  89.254ms         1  89.254ms  89.254ms  89.254ms  GPU_update(float3*, float, unsigned int)
+      API calls:   60.53%  163.90ms         1  163.90ms  163.90ms  163.90ms  cudaMallocManaged
+                   32.97%  89.263ms         1  89.263ms  89.263ms  89.263ms  cudaDeviceSynchronize
+                    6.20%  16.798ms         1  16.798ms  16.798ms  16.798ms  cudaFree
+                    0.22%  605.66us         1  605.66us  605.66us  605.66us  cuDeviceTotalMem
+                    0.05%  124.75us       101  1.2350us     148ns  50.115us  cuDeviceGetAttribute
+                    0.02%  51.950us         1  51.950us  51.950us  51.950us  cudaLaunchKernel
+                    0.01%  19.246us         1  19.246us  19.246us  19.246us  cuDeviceGetName
+                    0.00%  1.9160us         1  1.9160us  1.9160us  1.9160us  cuDeviceGetPCIBusId
+                    0.00%  1.3070us         3     435ns     208ns     882ns  cuDeviceGetCount
+                    0.00%     888ns         2     444ns     183ns     705ns  cuDeviceGet
+                    0.00%     308ns         1     308ns     308ns     308ns  cuDeviceGetUuid
+
+==20690== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+    7587  38.147KB  4.0000KB  0.9961MB  282.6367MB  31.10464ms  Host To Device
+     591         -         -         -           -  73.97264ms  Gpu page fault groups
+Total CPU Page faults: 1086
+Running!
+==20719== NVPROF is profiling process 20719, command: ./excercise_2b.out 100000000
+==20719== Profiling application: ./excercise_2b.out 100000000
+==20719== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  265.81ms         1  265.81ms  265.81ms  265.81ms  GPU_update(float3*, float, unsigned int)
+      API calls:   54.49%  265.82ms         1  265.82ms  265.82ms  265.82ms  cudaDeviceSynchronize
+                   35.42%  172.77ms         1  172.77ms  172.77ms  172.77ms  cudaMallocManaged
+                    9.94%  48.510ms         1  48.510ms  48.510ms  48.510ms  cudaFree
+                    0.11%  532.25us         1  532.25us  532.25us  532.25us  cuDeviceTotalMem
+                    0.02%  113.84us       101  1.1270us     125ns  46.348us  cuDeviceGetAttribute
+                    0.01%  48.463us         1  48.463us  48.463us  48.463us  cudaLaunchKernel
+                    0.00%  21.359us         1  21.359us  21.359us  21.359us  cuDeviceGetName
+                    0.00%  2.1680us         1  2.1680us  2.1680us  2.1680us  cuDeviceGetPCIBusId
+                    0.00%  1.2490us         3     416ns     180ns     854ns  cuDeviceGetCount
+                    0.00%     714ns         2     357ns     133ns     581ns  cuDeviceGet
+                    0.00%     305ns         1     305ns     305ns     305ns  cuDeviceGetUuid
+
+==20719== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+   30099  38.725KB  4.0000KB  0.9961MB  1.111584GB  123.4818ms  Host To Device
+    2365         -         -         -           -  275.4938ms  Gpu page fault groups
+Total CPU Page faults: 3436
+Running!
+==20739== NVPROF is profiling process 20739, command: ./excercise_2b.out 316000000
+==20739== Profiling application: ./excercise_2b.out 316000000
+==20739== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  827.69ms         1  827.69ms  827.69ms  827.69ms  GPU_update(float3*, float, unsigned int)
+      API calls:   71.26%  827.70ms         1  827.70ms  827.70ms  827.70ms  cudaDeviceSynchronize
+                   15.43%  179.17ms         1  179.17ms  179.17ms  179.17ms  cudaMallocManaged
+                   13.24%  153.78ms         1  153.78ms  153.78ms  153.78ms  cudaFree
+                    0.06%  679.88us         1  679.88us  679.88us  679.88us  cuDeviceTotalMem
+                    0.01%  142.29us       101  1.4080us     160ns  58.245us  cuDeviceGetAttribute
+                    0.00%  50.591us         1  50.591us  50.591us  50.591us  cudaLaunchKernel
+                    0.00%  26.245us         1  26.245us  26.245us  26.245us  cuDeviceGetName
+                    0.00%  2.6640us         1  2.6640us  2.6640us  2.6640us  cuDeviceGetPCIBusId
+                    0.00%  1.5680us         3     522ns     231ns  1.0790us  cuDeviceGetCount
+                    0.00%  1.1020us         2     551ns     183ns     919ns  cuDeviceGet
+                    0.00%     337ns         1     337ns     337ns     337ns  cuDeviceGetUuid
+
+==20739== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+   94854  38.757KB  4.0000KB  0.9961MB  3.505940GB  389.4974ms  Host To Device
+    7407         -         -         -           -  853.0519ms  Gpu page fault groups
+Total CPU Page faults: 10851
+Running!
+==20758== NVPROF is profiling process 20758, command: ./excercise_2b.out 1000000000
+==20758== Profiling application: ./excercise_2b.out 1000000000
+==20758== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:  100.00%  2.60377s         1  2.60377s  2.60377s  2.60377s  GPU_update(float3*, float, unsigned int)
+      API calls:   79.80%  2.60378s         1  2.60378s  2.60378s  2.60378s  cudaDeviceSynchronize
+                   14.86%  484.79ms         1  484.79ms  484.79ms  484.79ms  cudaFree
+                    5.30%  173.01ms         1  173.01ms  173.01ms  173.01ms  cudaMallocManaged
+                    0.03%  1.0853ms         1  1.0853ms  1.0853ms  1.0853ms  cuDeviceTotalMem
+                    0.01%  202.48us       101  2.0040us     265ns  81.180us  cuDeviceGetAttribute
+                    0.00%  47.361us         1  47.361us  47.361us  47.361us  cudaLaunchKernel
+                    0.00%  32.319us         1  32.319us  32.319us  32.319us  cuDeviceGetName
+                    0.00%  2.1240us         3     708ns     323ns  1.3660us  cuDeviceGetCount
+                    0.00%  2.0810us         1  2.0810us  2.0810us  2.0810us  cuDeviceGetPCIBusId
+                    0.00%  1.4110us         2     705ns     281ns  1.1300us  cuDeviceGet
+                    0.00%     507ns         1     507ns     507ns     507ns  cuDeviceGetUuid
+
+==20758== Unified Memory profiling result:
+Device "Tesla P100-PCIE-16GB (0)"
+   Count  Avg Size  Min Size  Max Size  Total Size  Total Time  Name
+  302997  38.648KB  4.0000KB  0.9961MB  11.16813GB   1.242606s  Host To Device
+   23593         -         -         -           -   2.697754s  Gpu page fault groups
+Total CPU Page faults: 34333
