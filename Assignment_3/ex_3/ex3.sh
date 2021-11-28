@@ -1,0 +1,12 @@
+nvprof --output-profile par1e8ns4it1e3.nvprof ./excercise_3.out 4 100000 1000000 1000
+nvprof --output-profile par1e8ns2it1e3.nvprof ./excercise_3.out 2 100000 1000000 1000
+nvprof --output-profile par1e8ns1it1e3.nvprof ./excercise_3.out 1 100000 1000000 1000
+nvprof --output-profile par1e8ns4it1.nvprof ./excercise_3.out 4 100000 1000000 1
+nvprof --output-profile par1e8ns2it1.nvprof ./excercise_3.out 2 100000 1000000 1
+nvprof --output-profile par1e8ns1it1.nvprof ./excercise_3.out 1 100000 1000000 1
+nvprof --output-profile par1e8ns4it1e3b1e2.nvprof ./excercise_3.out 4 100000 100 1000
+nvprof --output-profile par1e8ns4it1e3b1e3.nvprof ./excercise_3.out 4 100000 1000 1000
+nvprof --output-profile par1e8ns4it1e3b1e4.nvprof ./excercise_3.out 4 100000 10000 1000
+nvprof --output-profile par1e8ns4it1e3b1e5.nvprof ./excercise_3.out 4 100000 100000 1000
+nvprof --output-profile par1e8ns4it1e3b1e6.nvprof ./excercise_3.out 4 100000 1000000 1000
+nvprof --output-profile par1e8ns4it1e3b1e7.nvprof ./excercise_3.out 4 100000 10000000 1000
