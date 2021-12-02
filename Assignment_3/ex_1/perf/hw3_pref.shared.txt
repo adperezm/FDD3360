@@ -1,0 +1,7 @@
+Image opened (width=3840 height=2160).
+Step #1 Completed - Result stored in "images/hw3_result_1.bmp".
+Elapsed CPU: 0.000000ms / Elapsed GPU: 24.984000ms
+Step #2 Completed - Result stored in "images/hw3_result_2.bmp".
+Elapsed CPU: 0.000000ms / Elapsed GPU: 26.481000ms
+Step #3 Completed - Result stored in "images/hw3_result_3.bmp".
+Elapsed CPU: 0.000000ms / Elapsed GPU: 19.903000ms
