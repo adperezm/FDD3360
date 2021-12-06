@@ -68,7 +68,7 @@ void particle_computation_launcher(unsigned int n_streams, unsigned long long nu
     //Checks result 
     for (long i = 0; i < num_particles; i++) 
     {
-		if (fabs(all_particles_ptr[i].x - 1) > 0.01 ||fabs(all_particles_ptr[i].y - 1) > 0.01 || fabs(all_particles_ptr[i].z - 1) > 0.01  ) {
+		if (fabs(all_particles_ptr[i].x - num_iterations) > 0.01 ||fabs(all_particles_ptr[i].y - num_iterations) > 0.01 || fabs(all_particles_ptr[i].z - num_iterations) > 0.01  ) {
 			fprintf(stderr, "Computation failed at index %ld", i);
 			fprintf(stderr, "Values here: %f %f %f %f ", all_particles_ptr[i].x,all_particles_ptr[i].y,all_particles_ptr[i].z,all_particles_ptr[i+1].x);
 			exit(1);
