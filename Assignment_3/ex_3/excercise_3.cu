@@ -55,7 +55,7 @@ void particle_computation_launcher(unsigned int n_streams, unsigned long long nu
         cudaStreamCreate(&streams[i]);
     // Batch processing with streams
     unsigned int curr_str=0; //Stream to send each batch
-    for (unsigned int i=0; i< num_particles/batch_size ;i++)
+   /* for (unsigned int i=0; i< num_particles/batch_size ;i++)
     {
         unsigned long long offset= i*streamSize;
         //Some division might give problems where num particles%nstreams != 0 . 
@@ -63,6 +63,26 @@ void particle_computation_launcher(unsigned int n_streams, unsigned long long nu
         GPU_update<<<streamSize/BLOCK_SIZE+1,BLOCK_SIZE,0,streams[curr_str]>>>(d_all_particles_ptr,v,offset,streamSize,num_iterations);
         cudaMemcpyAsync(&all_particles_ptr[offset],&d_all_particles_ptr[offset], streamBytes, cudaMemcpyDeviceToHost, streams[curr_str]);
         curr_str=(curr_str+1)%n_streams; //After sending one batch, uses next stream for the next one. 
+    }*/ //Does not work for tegner
+
+    for (unsigned int i=0; i< num_particles/batch_size ;i++)
+    {
+	unsigned long long offset= i*streamSize;
+	cudaMemcpyAsync(&d_all_particles_ptr[offset],&all_particles_ptr[offset], streamBytes, cudaMemcpyHostToDevice, streams[curr_str]);
+	curr_str=(curr_str+1)%n_streams;
+    }
+    curr_str=0;
+    for (unsigned int i=0; i< num_particles/batch_size ;i++)
+    {
+	unsigned long long offset= i*streamSize;
+	GPU_update<<<streamSize/BLOCK_SIZE+1,BLOCK_SIZE,0,streams[curr_str]>>>(d_all_particles_ptr,v,offset,streamSize,num_iterations);
+	curr_str=(curr_str+1)%n_streams;
+    }
+    for (unsigned int i=0; i< num_particles/batch_size ;i++)
+    {
+	unsigned long long offset= i*streamSize;
+	cudaMemcpyAsync(&all_particles_ptr[offset],&d_all_particles_ptr[offset], streamBytes, cudaMemcpyDeviceToHost, streams[curr_str]);
+	curr_str=(curr_str+1)%n_streams;
     }
     cudaDeviceSynchronize();
     //Checks result 
