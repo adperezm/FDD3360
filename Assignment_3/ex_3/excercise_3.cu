@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <sys/time.h>
 #include <stdlib.h>
 
 // Question 1 defines:
@@ -7,6 +8,11 @@
 #define VEL 1
 typedef float3 Particle;
 
+double cpuSecond() {
+   struct timeval tp;
+   gettimeofday(&tp,NULL);
+   return ((double)tp.tv_sec + (double)tp.tv_usec*1.e-6);
+}
 
 //function declarations
 __device__ inline float3& operator +=(float3 &a, const float3 &b);
@@ -55,7 +61,8 @@ void particle_computation_launcher(unsigned int n_streams, unsigned long long nu
         cudaStreamCreate(&streams[i]);
     // Batch processing with streams
     unsigned int curr_str=0; //Stream to send each batch
-   /* for (unsigned int i=0; i< num_particles/batch_size ;i++)
+    double iStart = cpuSecond();
+    for (unsigned int i=0; i< num_particles/batch_size ;i++)
     {
         unsigned long long offset= i*streamSize;
         //Some division might give problems where num particles%nstreams != 0 . 
@@ -63,28 +70,10 @@ void particle_computation_launcher(unsigned int n_streams, unsigned long long nu
         GPU_update<<<streamSize/BLOCK_SIZE+1,BLOCK_SIZE,0,streams[curr_str]>>>(d_all_particles_ptr,v,offset,streamSize,num_iterations);
         cudaMemcpyAsync(&all_particles_ptr[offset],&d_all_particles_ptr[offset], streamBytes, cudaMemcpyDeviceToHost, streams[curr_str]);
         curr_str=(curr_str+1)%n_streams; //After sending one batch, uses next stream for the next one. 
-    }*/ //Does not work for tegner
-
-    for (unsigned int i=0; i< num_particles/batch_size ;i++)
-    {
-	unsigned long long offset= i*streamSize;
-	cudaMemcpyAsync(&d_all_particles_ptr[offset],&all_particles_ptr[offset], streamBytes, cudaMemcpyHostToDevice, streams[curr_str]);
-	curr_str=(curr_str+1)%n_streams;
-    }
-    curr_str=0;
-    for (unsigned int i=0; i< num_particles/batch_size ;i++)
-    {
-	unsigned long long offset= i*streamSize;
-	GPU_update<<<streamSize/BLOCK_SIZE+1,BLOCK_SIZE,0,streams[curr_str]>>>(d_all_particles_ptr,v,offset,streamSize,num_iterations);
-	curr_str=(curr_str+1)%n_streams;
-    }
-    for (unsigned int i=0; i< num_particles/batch_size ;i++)
-    {
-	unsigned long long offset= i*streamSize;
-	cudaMemcpyAsync(&all_particles_ptr[offset],&d_all_particles_ptr[offset], streamBytes, cudaMemcpyDeviceToHost, streams[curr_str]);
-	curr_str=(curr_str+1)%n_streams;
     }
     cudaDeviceSynchronize();
+    double calc_time = cpuSecond() - iStart;
+    printf("GPU processing time: %f  ", calc_time);
     //Checks result 
     for (long i = 0; i < num_particles; i++) 
     {
