@@ -1,0 +1,70 @@
+Starting with sweep of number of particles! \n
+Runing particle updater with N particles : 1 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 960.000000
+CPU processing time: 0.022405
+GPU processing time: 0.114105
+Runing particle updater with N particles : 2 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 1984.000000
+CPU processing time: 0.042172
+GPU processing time: 0.115623
+Runing particle updater with N particles : 5 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 4992.000000
+CPU processing time: 0.090746
+GPU processing time: 0.113173
+Runing particle updater with N particles : 10 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 9984.000000
+CPU processing time: 0.153184
+GPU processing time: 0.081825
+Runing particle updater with N particles : 21 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 20992.000000
+CPU processing time: 0.276771
+GPU processing time: 0.109776
+Runing particle updater with N particles : 46 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 45952.000000
+CPU processing time: 0.557631
+GPU processing time: 0.088334
+Runing particle updater with N particles : 100 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 99968.000000
+CPU processing time: 1.094109
+GPU processing time: 0.082486
+Runing particle updater with N particles : 210 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 209984.000000
+CPU processing time: 1.989788
+GPU processing time: 0.096524
+Runing particle updater with N particles : 460 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 459968.000000
+CPU processing time: 4.060093
+GPU processing time: 0.159872
+Runing particle updater with N particles : 1000 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 1000000.000000
+CPU processing time: 8.544947
+GPU processing time: 0.227850
+Runing particle updater with N particles : 2100 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 2099968.000000
+CPU processing time: 18.419793
+GPU processing time: 0.440376
+Runing particle updater with N particles : 4600 (thousands)  and N iterations: 2000 Batch size: 64
+Number of iterations to send: 2000.000000, Number of particles to send: 4600000.000000
+CPU processing time: 39.357227
+GPU processing time: 0.837959
+Starting with sweep of batch size
+Runing particle updater with N particles : 100 (thousands)  and N iterations: 100000 Batch size: 16
+Number of iterations to send: 100000.000000, Number of particles to send: 100000.000000
+CPU processing time: 0.000000
+GPU processing time: 2.805902
+Runing particle updater with N particles : 100 (thousands)  and N iterations: 100000 Batch size: 32
+Number of iterations to send: 100000.000000, Number of particles to send: 100000.000000
+CPU processing time: 0.000001
+GPU processing time: 1.456876
+Runing particle updater with N particles : 100 (thousands)  and N iterations: 100000 Batch size: 64
+Number of iterations to send: 100000.000000, Number of particles to send: 99968.000000
+CPU processing time: 0.000000
+GPU processing time: 0.834583
+Runing particle updater with N particles : 100 (thousands)  and N iterations: 100000 Batch size: 128
+Number of iterations to send: 100000.000000, Number of particles to send: 99968.000000
+CPU processing time: 0.000000
+GPU processing time: 0.835445
+Runing particle updater with N particles : 100 (thousands)  and N iterations: 100000 Batch size: 256
+Number of iterations to send: 100000.000000, Number of particles to send: 99840.000000
+CPU processing time: 0.000001
+GPU processing time: 0.835371
