@@ -1,0 +1,7 @@
+Initializing arrays: 12800000
+Array size: 12800000
+Computing SAXPY on the CPU…Done! 
+Computing SAXPY on the GPU…Done! 
+Time elapsed CPU: 0.036781 
+ Time elapsed GPU: 0.150959 
+First elements out array CPU: 6.000000, 6.000000, 6.000000First elements out array GPU: 6.000000, 6.000000, 6.000000
